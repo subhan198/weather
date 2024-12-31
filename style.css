@@ -1,0 +1,22 @@
+body{
+    background-image: url(weather.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    
+}
+header{
+    flex-direction: column;
+    font-weight: bold;
+}
+H1{
+    color: whitesmoke;
+    text-decoration: solid;
+    text-shadow: 4px 5px 5px black;
+}
+
+
+
+

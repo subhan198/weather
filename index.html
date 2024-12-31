@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <header>
+    <h1>WEATHER LOCATION</h1>
+    <label>
+        <input type="text"id="cityName"placeholder="location">
+    </label>
+    <button onclick="Submit()">check</button>
+    <div class="sec">
+        <img src="" alt=""id="weatherImg">
+        <ul>
+            <li id="location">
+
+            </li>
+
+            <li id="tem">
+
+            </li>
+
+            <li id="feelslike">
+
+            </li>
+
+            <li id="wind">
+
+            </li>
+
+            <li id="humidity">
+
+            </li>
+
+            <li id="windchill">
+            </li>
+
+        </ul>
+    </div>
+</header>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function Submit(){
+        let city=document.getElementById("cityName").value;
+        axios.get(`https://api.weatherapi.com/v1/current.json?key=d347dfb1a00b4f86add45435242510&q=${city}`)
+        .then((response) =>{
+            console.log(response.data);
+            let currentlocation = response.data.location
+            document.getElementById("location").innerText=`location:${currentlocation.name}${currentlocation.region}${currentlocation.country}`
+
+            let currentWeather=response.data.current
+            document.getElementById("weatherImg").src=`https:${currentWeather.condition.icon}`
+            document.getElementById("tem").innerText=`Temperature:${currentWeather.temp_c}°C`
+            document.getElementById("feelslike").innerText=`feelslike:${currentWeather.feelslike_c}°C` 
+            document.getElementById("wind").innerText=`wind:${currentWeather.wind_kph}`
+             document.getElementById("humidity").innerText=`humidity:${currentWeather.humidity}`
+             document.getElementById("windchill").innerText=`windchill:${currentWeather.windchill_f}`
+
+           
+
+
+
+        
+            
+        })
+        .catch((error) => {
+                console.log(error)
+            })
+
+    }
+
+    </script>
+
+
+
+    
+</body>
+</html>
